@@ -1,3 +1,4 @@
+"use strict";
 try {
   console.log("start");
   const board = new Board();
@@ -6,3 +7,10 @@ try {
 } catch (err) {
   console.log("err: ", err);
 }
+
+const alice = new Person("Alice", 23);
+alice.sayHello();
+const bob = new Employee("Bob", 34, "Orsys", 2000);
+bob.sayHello();
+bob.reward(10);
+bob.sayHello();
