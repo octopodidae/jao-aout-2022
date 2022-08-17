@@ -1,22 +1,21 @@
 (function () {
-  "use-strict";
-  function Employee(name, age, companyName, salary) {
-    Object.getPrototypeOf(Employee.prototype).constructor.bind(this)(name, age);
-    this.companyName = companyName;
-    this.salary = salary;
+  "use strict";
+  class Employee extends Person {
+    constructor(name, age, companyName, salary) {
+      super(name, age);
+      this.companyName = companyName;
+      this.salary = salary;
+    }
+
+    reward(percent) {
+      this.salary += (this.salary * percent) / 100;
+      console.log("youpi my new salary is " + this.salary);
+    }
+
+    sayHello() {
+      super.sayHello();
+      console.log("I am working for " + this.companyName);
+    }
   }
-
-  Object.setPrototypeOf(Employee.prototype, Person.prototype);
-
-  Employee.prototype.reward = function (percent) {
-    this.salary = (this.salary * percent) / 100;
-    console.log("youpi my new salary is " + this.salary);
-  };
-
-  Employee.prototype.sayHello = function () {
-    Object.getPrototypeOf(Employee.prototype).sayHello();
-    console.log("I am working for " + this.companyName);
-  };
-
   window.Employee = Employee;
 })();
