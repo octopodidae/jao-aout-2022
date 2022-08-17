@@ -1,14 +1,10 @@
 (function () {
   "use-strict";
   function Employee(name, age, companyName, salary) {
-    Object.getPrototypeOf(Employee.prototype).constructor(name, age);
+    Object.getPrototypeOf(Employee.prototype).constructor.bind(this)(name, age);
     this.companyName = companyName;
     this.salary = salary;
   }
-
-  //   Employee.prototype.sayHello = function () {
-  //     console.log("Hello my name is " + this.name + " and I am " + this.age);
-  //   };
 
   Object.setPrototypeOf(Employee.prototype, Person.prototype);
 
