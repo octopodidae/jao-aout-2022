@@ -1,6 +1,7 @@
 import { Board } from "./Board";
 import { Command } from "./Command";
 import { Config } from "./interfaces/Config";
+import "./style.css";
 
 try {
   let board = new Board();
