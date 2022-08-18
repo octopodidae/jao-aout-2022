@@ -7,3 +7,8 @@ svg {
 .samples circle {
   fill: black;
 }
+
+.lines line {
+  stroke: black;
+  stroke-width: 0.01em;
+}
