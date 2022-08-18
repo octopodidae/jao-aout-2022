@@ -16,7 +16,7 @@ export class Command {
       console.log("slider: ", slider);
       slider.value = this.config[key];
       const label = document.querySelector(`div.command label.${key} span`);
-      label.innerHTML = this.config.samples;
+      label.innerHTML = this.config[key];
     }
   }
   initActions() {
@@ -26,9 +26,15 @@ export class Command {
     for (const key of arr) {
       const slider = document.querySelector(`div.command label.${key} input`);
       console.log("slider: ", slider);
-      slider.addEventListener("input", () => {
-        console.log("coucou");
+      slider.addEventListener("input", (event) => {
+        // console.log("event: ", event);
+        const value = slider.value;
+        console.log("value: ", value);
+        this.config[key] = value;
+        this.applyConfig();
+        this.callback(this.config);
       });
+
       //   slider.value = this.config[key];
       //   const label = document.querySelector(`div.command label.${key} span`);
       //   label.innerHTML = this.config.samples;
