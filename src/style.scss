@@ -1,0 +1,10 @@
+@import "../node_modules/normalize.css/normalize.css";
+@import "../node_modules/sanitize.css/sanitize.css";
+@import "./scss/variables.scss";
+@import "./scss/board.scss";
+@import "./scss/command.scss";
+
+body {
+  padding: 0.5em;
+  font-family: sans-serif;
+}

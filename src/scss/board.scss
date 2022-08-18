@@ -1,0 +1,15 @@
+svg {
+  border: 0.1em solid black;
+  width: $width;
+  height: 30em;
+  border-radius: $border-radius;
+
+  .samples circle {
+    fill: black;
+  }
+
+  .lines line {
+    stroke: black;
+    stroke-width: 0.02em;
+  }
+}

@@ -1,12 +1,16 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = (_, args) => {
   const mode = args.mode ?? "development";
 
   return {
-    plugins: [new MiniCssExtractPlugin()],
+    plugins: [
+      new MiniCssExtractPlugin(),
+      new HtmlWebpackPlugin({ template: "./src/index.html" }),
+    ],
     entry: "./src/main.ts",
     output: {
       filename: "bundle.js",
@@ -22,8 +26,8 @@ module.exports = (_, args) => {
           exclude: /node_modules/,
         },
         {
-          test: /\.css$/i,
-          use: [MiniCssExtractPlugin.loader, "css-loader"],
+          test: /\.scss$/i,
+          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
         },
       ],
     },
