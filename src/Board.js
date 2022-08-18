@@ -27,11 +27,9 @@ const drawLine = (p1, p2) => {
 
 export class Board {
   constructor() {
-    console.log("instanciating board");
     this.config = { samples: 23, multiplicationFactor: 34 };
   }
   drawCircles() {
-    console.log("I am drawing circle");
     for (let i = 0; i < this.config.samples; i++) {
       const angle = getAngleFromIndex(i, this.config.samples);
 
@@ -46,7 +44,6 @@ export class Board {
   }
 
   drawLines() {
-    console.log("I am drawing line");
     for (let i = 0; i < this.config.samples; i++) {
       this.drawLine(i);
     }
@@ -54,7 +51,7 @@ export class Board {
 
   drawLine(index) {
     const angle1 = getAngleFromIndex(index, this.config.samples);
-    console.log("angle1: ", angle1);
+
     const angle2 = getAngleFromIndex(
       index * this.config.multiplicationFactor,
       this.config.samples
