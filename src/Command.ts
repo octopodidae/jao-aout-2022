@@ -1,5 +1,5 @@
 import { Config } from "./interfaces/Config";
-import { querySelector } from "./Utils";
+import { keys, querySelector } from "./Utils";
 const DELAY = 300;
 export class Command {
   _config: Config = {
@@ -34,7 +34,7 @@ export class Command {
   }
 
   draw() {
-    const arr = Object.keys(this.config) as (keyof Config)[];
+    const arr = keys(this.config);
 
     for (const key of arr) {
       const slider = querySelector(
@@ -52,7 +52,7 @@ export class Command {
   }
 
   initActions() {
-    const arr = Object.keys(this.config) as (keyof Config)[];
+    const arr = keys(this.config);
 
     for (const key of arr) {
       const slider = querySelector(
