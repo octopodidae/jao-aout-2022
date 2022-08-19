@@ -7,7 +7,7 @@ export class Command {
     multiplicationFactor: 0,
   };
   callback: ((newConfig: Config) => void) | undefined;
-  isPlaying = false;
+  _isPlaying = false;
   subscription: ReturnType<typeof setInterval> | undefined;
 
   constructor(config: Config) {
@@ -21,6 +21,15 @@ export class Command {
 
   set config(val: Config) {
     this._config = val;
+    this.draw();
+  }
+
+  get isPlaying() {
+    return this._isPlaying;
+  }
+
+  set isPlaying(val: boolean) {
+    this._isPlaying = val;
     this.draw();
   }
 
@@ -64,7 +73,6 @@ export class Command {
     button.addEventListener("click", (event) => {
       this.isPlaying = !this.isPlaying;
       this.isPlaying ? this.play() : this.pause();
-      this.draw();
     });
   }
 
