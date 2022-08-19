@@ -2,15 +2,26 @@ import { Config } from "./interfaces/Config";
 import { querySelector } from "./Utils";
 const DELAY = 300;
 export class Command {
+  _config: Config = {
+    samples: 0,
+    multiplicationFactor: 0,
+  };
   callback: ((newConfig: Config) => void) | undefined;
-  config: Config;
   isPlaying = false;
   subscription: ReturnType<typeof setInterval> | undefined;
 
   constructor(config: Config) {
     this.config = config;
-    this.draw();
     this.initActions();
+  }
+
+  get config() {
+    return this._config;
+  }
+
+  set config(val: Config) {
+    this._config = val;
+    this.draw();
   }
 
   draw() {
@@ -41,11 +52,8 @@ export class Command {
       );
 
       slider.addEventListener("input", (event) => {
-        //
         const value = +slider.value;
-
-        this.config[key] = value;
-        this.draw();
+        this.config = { ...this.config, [key]: value };
       });
     }
     this.initButtonAction();
@@ -60,21 +68,22 @@ export class Command {
     });
   }
 
-  play() {
-    this.subscription = setInterval(() => {
-      this.config.multiplicationFactor++;
-      if (this.config.multiplicationFactor > 100) {
-        this.config.multiplicationFactor = 0;
-      }
-      this.draw();
-    }, DELAY);
-  }
-
   pause() {
     if (this.subscription === undefined) {
       return;
     }
     clearInterval(this.subscription);
+  }
+
+  play() {
+    this.subscription = setInterval(() => {
+      let multiplicationFactor = this.config.multiplicationFactor;
+      multiplicationFactor++;
+      if (multiplicationFactor > 100) {
+        multiplicationFactor = 0;
+      }
+      this.config = { ...this.config, multiplicationFactor };
+    }, DELAY);
   }
 
   subscribe(callback: (newConfig: Config) => void) {
