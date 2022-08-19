@@ -18,13 +18,12 @@ export class Command {
 
     for (const key of arr) {
       const slider = querySelector(
-        `div.command label.${key} input`
-      ) as HTMLInputElement;
+        `div.command label.${key} input`,
+        HTMLInputElement
+      );
 
       slider.value = this.config[key] + "";
-      const label = querySelector(
-        `div.command label.${key} span`
-      ) as HTMLInputElement;
+      const label = querySelector(`div.command label.${key} span`);
       label.innerHTML = this.config[key] + "";
     }
     const button = querySelector("div.command button");
@@ -37,8 +36,9 @@ export class Command {
 
     for (const key of arr) {
       const slider = querySelector(
-        `div.command label.${key} input`
-      ) as HTMLInputElement;
+        `div.command label.${key} input`,
+        HTMLInputElement
+      );
 
       slider.addEventListener("input", (event) => {
         //
