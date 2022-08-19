@@ -1,4 +1,5 @@
 import { Config } from "./interfaces/Config";
+import { querySelector } from "./Utils";
 const DELAY = 300;
 export class Command {
   callback: ((newConfig: Config) => void) | undefined;
@@ -16,17 +17,17 @@ export class Command {
     const arr = Object.keys(this.config) as (keyof Config)[];
 
     for (const key of arr) {
-      const slider = document.querySelector(
+      const slider = querySelector(
         `div.command label.${key} input`
       ) as HTMLInputElement;
 
       slider.value = this.config[key] + "";
-      const label = document.querySelector(
+      const label = querySelector(
         `div.command label.${key} span`
       ) as HTMLInputElement;
       label.innerHTML = this.config[key] + "";
     }
-    const button = document.querySelector("div.command button") as Element;
+    const button = querySelector("div.command button");
     button.innerHTML = this.isPlaying ? "Pause" : "Play";
     this.callback?.(this.config);
   }
@@ -35,7 +36,7 @@ export class Command {
     const arr = Object.keys(this.config) as (keyof Config)[];
 
     for (const key of arr) {
-      const slider = document.querySelector(
+      const slider = querySelector(
         `div.command label.${key} input`
       ) as HTMLInputElement;
 
@@ -51,7 +52,7 @@ export class Command {
   }
 
   initButtonAction() {
-    const button = document.querySelector("div.command button") as Element;
+    const button = querySelector("div.command button");
     button.addEventListener("click", (event) => {
       this.isPlaying = !this.isPlaying;
       this.isPlaying ? this.play() : this.pause();
