@@ -1,0 +1,16 @@
+button {
+  padding: 0.5em 1em;
+  cursor: pointer;
+  border: 0.1em solid #eee;
+  background-color: #eee;
+  border-radius: $border-radius;
+
+  &:hover {
+    background-color: #ddd;
+    border-color: #ddd;
+  }
+  &:active {
+    background-color: #bbb;
+    border-color: #bbb;
+  }
+}
